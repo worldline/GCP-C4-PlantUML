@@ -1,27 +1,37 @@
 ' C4-PlantUML, version 1.0.0
 ' https://github.com/RicardoNiepel/C4-PlantUML
+
 ' Colors
 ' ##################################
+
 !define ELEMENT_FONT_COLOR #FFFFFF
+
 ' Styling
 ' ##################################
+
 !define TECHN_FONT_SIZE 12
+
 skinparam defaultTextAlignment center
+
 skinparam wrapWidth 200
 skinparam maxMessageSize 150
+
 skinparam rectangle {
     StereotypeFontSize 12
     shadowing false
 }
+
 skinparam database {
     StereotypeFontSize 12
     shadowing false
 }
+
 skinparam Arrow {
     Color #666666
     FontColor #666666
     FontSize 12
 }
+
 skinparam rectangle<<boundary>> {
     Shadowing false
     StereotypeFontSize 0
@@ -29,104 +39,133 @@ skinparam rectangle<<boundary>> {
     BorderColor #444444
     BorderStyle dashed
 }
+
 ' Layout
 ' ##################################
+
 !definelong LAYOUT_AS_SKETCH
 skinparam backgroundColor #EEEBDC
 skinparam handwritten true
 skinparam defaultFontName "Comic Sans MS"
 center footer <font color=red>Warning:</font> Created for discussion, needs to be validated
 !enddefinelong
+
 !define LAYOUT_TOP_DOWN top to bottom direction
 !define LAYOUT_LEFT_RIGHT left to right direction
+
 ' Boundaries
 ' ##################################
+
 !define Boundary(e_alias, e_label) rectangle "==e_label" <<boundary>> as e_alias
 !define Boundary(e_alias, e_label, e_type) rectangle "==e_label\n<size:TECHN_FONT_SIZE>[e_type]</size>" <<boundary>> as e_alias
+
 ' Relationship
 ' ##################################
+
 !define Rel_(e_alias1, e_alias2, e_label, e_direction="") e_alias1 e_direction e_alias2 : "===e_label"
 !define Rel_(e_alias1, e_alias2, e_label, e_techn, e_direction="") e_alias1 e_direction e_alias2 : "===e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//"
+
 !define Rel(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "-->")
 !define Rel(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "-->")
+
 !define Rel_Back(e_to, e_from, e_label) Rel_(e_to, e_from, e_label, "<--")
 !define Rel_Back(e_to, e_from, e_label, e_techn) Rel_(e_to, e_from, e_label, e_techn, "<--")
+
 !define Rel_Neighbor(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "->")
 !define Rel_Neighbor(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "->")
+
 !define Rel_Back_Neighbor(e_to, e_from, e_label) Rel_(e_to, e_from, e_label, "<-")
 !define Rel_Back_Neighbor(e_to, e_from, e_label, e_techn) Rel_(e_to, e_from, e_label, e_techn, "<-")
+
 !define Rel_D(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "-DOWN->")
 !define Rel_D(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "-DOWN->")
 !define Rel_Down(e_from,e_to, e_label) Rel_D(e_from,e_to, e_label)
 !define Rel_Down(e_from,e_to, e_label, e_techn) Rel_D(e_from,e_to, e_label, e_techn)
+
 !define Rel_U(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "-UP->")
 !define Rel_U(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "-UP->")
 !define Rel_Up(e_from,e_to, e_label) Rel_U(e_from,e_to, e_label)
 !define Rel_Up(e_from,e_to, e_label, e_techn) Rel_U(e_from,e_to, e_label, e_techn)
+
 !define Rel_L(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "-LEFT->")
 !define Rel_L(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "-LEFT->")
 !define Rel_Left(e_from,e_to, e_label) Rel_L(e_from,e_to, e_label)
 !define Rel_Left(e_from,e_to, e_label, e_techn) Rel_L(e_from,e_to, e_label, e_techn)
+
 !define Rel_R(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "-RIGHT->")
 !define Rel_R(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "-RIGHT->")
 !define Rel_Right(e_from,e_to, e_label) Rel_R(e_from,e_to, e_label)
 !define Rel_Right(e_from,e_to, e_label, e_techn) Rel_R(e_from,e_to, e_label, e_techn)
+
 ' Layout Helpers
 ' ##################################
+
 !define Lay_D(e_from, e_to) e_from -[hidden]D- e_to
 !define Lay_U(e_from, e_to) e_from -[hidden]U- e_to
 !define Lay_R(e_from, e_to) e_from -[hidden]R- e_to
 !define Lay_L(e_from, e_to) e_from -[hidden]L- e_to
+
 ' Scope: A single software system.
 ' Primary elements: The software system in scope.
 ' Supporting elements: People and software systems directly connected to the software system in scope.
 ' Intended audience: Everybody, both technical and non-technical people, inside and outside of the software development team.
+
 ' Colors
 ' ##################################
+
 !define PERSON_BG_COLOR #08427B
 !define EXTERNAL_PERSON_BG_COLOR #686868
 !define SYSTEM_BG_COLOR #1168BD
 !define EXTERNAL_SYSTEM_BG_COLOR #999999
+
 ' Styling
 ' ##################################
+
 skinparam rectangle<<person>> {
     StereotypeFontColor ELEMENT_FONT_COLOR
     FontColor ELEMENT_FONT_COLOR
     BackgroundColor PERSON_BG_COLOR
     BorderColor #073B6F
 }
+
 skinparam rectangle<<external_person>> {
     StereotypeFontColor ELEMENT_FONT_COLOR
     FontColor ELEMENT_FONT_COLOR
     BackgroundColor EXTERNAL_PERSON_BG_COLOR
     BorderColor #8A8A8A
 }
+
 skinparam rectangle<<system>> {
     StereotypeFontColor ELEMENT_FONT_COLOR
     FontColor ELEMENT_FONT_COLOR
     BackgroundColor SYSTEM_BG_COLOR
     BorderColor #3C7FC0
 }
+
 skinparam rectangle<<external_system>> {
     StereotypeFontColor ELEMENT_FONT_COLOR
     FontColor ELEMENT_FONT_COLOR
     BackgroundColor EXTERNAL_SYSTEM_BG_COLOR
     BorderColor #8A8A8A
 }
+
 skinparam database<<system>> {
     StereotypeFontColor ELEMENT_FONT_COLOR
     FontColor ELEMENT_FONT_COLOR
     BackgroundColor SYSTEM_BG_COLOR
     BorderColor #3C7FC0
 }
+
 skinparam database<<external_system>> {
     StereotypeFontColor ELEMENT_FONT_COLOR
     FontColor ELEMENT_FONT_COLOR
     BackgroundColor EXTERNAL_SYSTEM_BG_COLOR
     BorderColor #8A8A8A
 }
+
 ' Layout
 ' ##################################
+
 !definelong LAYOUT_WITH_LEGEND
 hide stereotype
 legend right
@@ -137,272 +176,36 @@ legend right
 |<EXTERNAL_SYSTEM_BG_COLOR>      | external system |
 endlegend
 !enddefinelong
+
 ' Elements
 ' ##################################
+
 !define Person(e_alias, e_label) rectangle "==e_label" <<person>> as e_alias
 !define Person(e_alias, e_label, e_descr) rectangle "==e_label\n\n e_descr" <<person>> as e_alias
+
 !define Person_Ext(e_alias, e_label) rectangle "==e_label" <<external_person>> as e_alias
 !define Person_Ext(e_alias, e_label, e_descr) rectangle "==e_label\n\n e_descr" <<external_person>> as e_alias
+
 !define System(e_alias, e_label) rectangle "==e_label" <<system>> as e_alias
 !define System(e_alias, e_label, e_descr) rectangle "==e_label\n\n e_descr" <<system>> as e_alias
+
 !define System_Ext(e_alias, e_label) rectangle "==e_label" <<external_system>> as e_alias
 !define System_Ext(e_alias, e_label, e_descr) rectangle "==e_label\n\n e_descr" <<external_system>> as e_alias
+
 !define SystemDb(e_alias, e_label) database "==e_label" <<system>> as e_alias
 !define SystemDb(e_alias, e_label, e_descr) database "==e_label\n\n e_descr" <<system>> as e_alias
+
 !define SystemDb_Ext(e_alias, e_label) database "==e_label" <<external_system>> as e_alias
 !define SystemDb_Ext(e_alias, e_label, e_descr) database "==e_label\n\n e_descr" <<external_system>> as e_alias
+
 ' Boundaries
 ' ##################################
+
 !define Enterprise_Boundary(e_alias, e_label) Boundary(e_alias, e_label, "Enterprise")
 !define System_Boundary(e_alias, e_label) Boundary(e_alias, e_label, "System")
-' Scope: A single software system.
-' Primary elements: Containers within the software system in scope.
-' Supporting elements: People and software systems directly connected to the containers.
-' Intended audience: Technical people inside and outside of the software development team; including software architects, developers and operations/support staff.
-' Colors
-' ##################################
-!define CONTAINER_BG_COLOR #438DD5
-' Styling
-' ##################################
-skinparam rectangle<<container>> {
-    StereotypeFontColor ELEMENT_FONT_COLOR
-    FontColor ELEMENT_FONT_COLOR
-    BackgroundColor CONTAINER_BG_COLOR
-    BorderColor #3C7FC0
-}
-skinparam database<<container>> {
-    StereotypeFontColor ELEMENT_FONT_COLOR
-    FontColor ELEMENT_FONT_COLOR
-    BackgroundColor CONTAINER_BG_COLOR
-    BorderColor #3C7FC0
-}
-' Layout
-' ##################################
-!definelong LAYOUT_WITH_LEGEND
-hide stereotype
-legend right
-|=              |= Type |
-|<PERSON_BG_COLOR>      | person |
-|<EXTERNAL_PERSON_BG_COLOR>      | external person |
-|<SYSTEM_BG_COLOR>   | system |
-|<EXTERNAL_SYSTEM_BG_COLOR>      | external system |
-|<CONTAINER_BG_COLOR>   | container |
-endlegend
-!enddefinelong
-' Elements
-' ##################################
-!define Container(e_alias, e_label, e_techn) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//" <<container>> as e_alias
-!define Container(e_alias, e_label, e_techn, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//\n\n e_descr" <<container>> as e_alias
-!define ContainerDb(e_alias, e_label, e_techn) database "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//" <<container>> as e_alias
-!define ContainerDb(e_alias, e_label, e_techn, e_descr) database "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//\n\n e_descr" <<container>> as e_alias
-' Boundaries
-' ##################################
-!define Container_Boundary(e_alias, e_label) Boundary(e_alias, e_label, "Container")
+
+
 ' C4-PlantUML, version 1.0.0
-' https://github.com/RicardoNiepel/C4-PlantUML
-
-' Colors
-' ##################################
-
-!define ELEMENT_FONT_COLOR #FFFFFF
-
-' Styling
-' ##################################
-
-!define TECHN_FONT_SIZE 12
-
-skinparam defaultTextAlignment center
-
-skinparam wrapWidth 200
-skinparam maxMessageSize 150
-
-skinparam rectangle {
-    StereotypeFontSize 12
-    shadowing false
-}
-
-skinparam database {
-    StereotypeFontSize 12
-    shadowing false
-}
-
-skinparam Arrow {
-    Color #666666
-    FontColor #666666
-    FontSize 12
-}
-
-skinparam rectangle<<boundary>> {
-    Shadowing false
-    StereotypeFontSize 0
-    FontColor #444444
-    BorderColor #444444
-    BorderStyle dashed
-}
-
-' Layout
-' ##################################
-
-!definelong LAYOUT_AS_SKETCH
-skinparam backgroundColor #EEEBDC
-skinparam handwritten true
-skinparam defaultFontName "Comic Sans MS"
-center footer <font color=red>Warning:</font> Created for discussion, needs to be validated
-!enddefinelong
-
-!define LAYOUT_TOP_DOWN top to bottom direction
-!define LAYOUT_LEFT_RIGHT left to right direction
-
-' Boundaries
-' ##################################
-
-!define Boundary(e_alias, e_label) rectangle "==e_label" <<boundary>> as e_alias
-!define Boundary(e_alias, e_label, e_type) rectangle "==e_label\n<size:TECHN_FONT_SIZE>[e_type]</size>" <<boundary>> as e_alias
-
-' Relationship
-' ##################################
-
-!define Rel_(e_alias1, e_alias2, e_label, e_direction="") e_alias1 e_direction e_alias2 : "===e_label"
-!define Rel_(e_alias1, e_alias2, e_label, e_techn, e_direction="") e_alias1 e_direction e_alias2 : "===e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//"
-
-!define Rel(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "-->")
-!define Rel(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "-->")
-
-!define Rel_Back(e_to, e_from, e_label) Rel_(e_to, e_from, e_label, "<--")
-!define Rel_Back(e_to, e_from, e_label, e_techn) Rel_(e_to, e_from, e_label, e_techn, "<--")
-
-!define Rel_Neighbor(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "->")
-!define Rel_Neighbor(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "->")
-
-!define Rel_Back_Neighbor(e_to, e_from, e_label) Rel_(e_to, e_from, e_label, "<-")
-!define Rel_Back_Neighbor(e_to, e_from, e_label, e_techn) Rel_(e_to, e_from, e_label, e_techn, "<-")
-
-!define Rel_D(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "-DOWN->")
-!define Rel_D(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "-DOWN->")
-!define Rel_Down(e_from,e_to, e_label) Rel_D(e_from,e_to, e_label)
-!define Rel_Down(e_from,e_to, e_label, e_techn) Rel_D(e_from,e_to, e_label, e_techn)
-
-!define Rel_U(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "-UP->")
-!define Rel_U(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "-UP->")
-!define Rel_Up(e_from,e_to, e_label) Rel_U(e_from,e_to, e_label)
-!define Rel_Up(e_from,e_to, e_label, e_techn) Rel_U(e_from,e_to, e_label, e_techn)
-
-!define Rel_L(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "-LEFT->")
-!define Rel_L(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "-LEFT->")
-!define Rel_Left(e_from,e_to, e_label) Rel_L(e_from,e_to, e_label)
-!define Rel_Left(e_from,e_to, e_label, e_techn) Rel_L(e_from,e_to, e_label, e_techn)
-
-!define Rel_R(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "-RIGHT->")
-!define Rel_R(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "-RIGHT->")
-!define Rel_Right(e_from,e_to, e_label) Rel_R(e_from,e_to, e_label)
-!define Rel_Right(e_from,e_to, e_label, e_techn) Rel_R(e_from,e_to, e_label, e_techn)
-
-' Layout Helpers
-' ##################################
-
-!define Lay_D(e_from, e_to) e_from -[hidden]D- e_to
-!define Lay_U(e_from, e_to) e_from -[hidden]U- e_to
-!define Lay_R(e_from, e_to) e_from -[hidden]R- e_to
-!define Lay_L(e_from, e_to) e_from -[hidden]L- e_to
-
-' Scope: A single software system.
-' Primary elements: The software system in scope.
-' Supporting elements: People and software systems directly connected to the software system in scope.
-' Intended audience: Everybody, both technical and non-technical people, inside and outside of the software development team.
-
-' Colors
-' ##################################
-
-!define PERSON_BG_COLOR #08427B
-!define EXTERNAL_PERSON_BG_COLOR #686868
-!define SYSTEM_BG_COLOR #1168BD
-!define EXTERNAL_SYSTEM_BG_COLOR #999999
-
-' Styling
-' ##################################
-
-skinparam rectangle<<person>> {
-    StereotypeFontColor ELEMENT_FONT_COLOR
-    FontColor ELEMENT_FONT_COLOR
-    BackgroundColor PERSON_BG_COLOR
-    BorderColor #073B6F
-}
-
-skinparam rectangle<<external_person>> {
-    StereotypeFontColor ELEMENT_FONT_COLOR
-    FontColor ELEMENT_FONT_COLOR
-    BackgroundColor EXTERNAL_PERSON_BG_COLOR
-    BorderColor #8A8A8A
-}
-
-skinparam rectangle<<system>> {
-    StereotypeFontColor ELEMENT_FONT_COLOR
-    FontColor ELEMENT_FONT_COLOR
-    BackgroundColor SYSTEM_BG_COLOR
-    BorderColor #3C7FC0
-}
-
-skinparam rectangle<<external_system>> {
-    StereotypeFontColor ELEMENT_FONT_COLOR
-    FontColor ELEMENT_FONT_COLOR
-    BackgroundColor EXTERNAL_SYSTEM_BG_COLOR
-    BorderColor #8A8A8A
-}
-
-skinparam database<<system>> {
-    StereotypeFontColor ELEMENT_FONT_COLOR
-    FontColor ELEMENT_FONT_COLOR
-    BackgroundColor SYSTEM_BG_COLOR
-    BorderColor #3C7FC0
-}
-
-skinparam database<<external_system>> {
-    StereotypeFontColor ELEMENT_FONT_COLOR
-    FontColor ELEMENT_FONT_COLOR
-    BackgroundColor EXTERNAL_SYSTEM_BG_COLOR
-    BorderColor #8A8A8A
-}
-
-' Layout
-' ##################################
-
-!definelong LAYOUT_WITH_LEGEND
-hide stereotype
-legend right
-|=              |= Type |
-|<PERSON_BG_COLOR>      | person |
-|<EXTERNAL_PERSON_BG_COLOR>      | external person |
-|<SYSTEM_BG_COLOR>   | system |
-|<EXTERNAL_SYSTEM_BG_COLOR>      | external system |
-endlegend
-!enddefinelong
-
-' Elements
-' ##################################
-
-!define Person(e_alias, e_label) rectangle "==e_label" <<person>> as e_alias
-!define Person(e_alias, e_label, e_descr) rectangle "==e_label\n\n e_descr" <<person>> as e_alias
-
-!define Person_Ext(e_alias, e_label) rectangle "==e_label" <<external_person>> as e_alias
-!define Person_Ext(e_alias, e_label, e_descr) rectangle "==e_label\n\n e_descr" <<external_person>> as e_alias
-
-!define System(e_alias, e_label) rectangle "==e_label" <<system>> as e_alias
-!define System(e_alias, e_label, e_descr) rectangle "==e_label\n\n e_descr" <<system>> as e_alias
-
-!define System_Ext(e_alias, e_label) rectangle "==e_label" <<external_system>> as e_alias
-!define System_Ext(e_alias, e_label, e_descr) rectangle "==e_label\n\n e_descr" <<external_system>> as e_alias
-
-!define SystemDb(e_alias, e_label) database "==e_label" <<system>> as e_alias
-!define SystemDb(e_alias, e_label, e_descr) database "==e_label\n\n e_descr" <<system>> as e_alias
-
-!define SystemDb_Ext(e_alias, e_label) database "==e_label" <<external_system>> as e_alias
-!define SystemDb_Ext(e_alias, e_label, e_descr) database "==e_label\n\n e_descr" <<external_system>> as e_alias
-
-' Boundaries
-' ##################################
-
-!define Enterprise_Boundary(e_alias, e_label) Boundary(e_alias, e_label, "Enterprise")
-!define System_Boundary(e_alias, e_label) Boundary(e_alias, e_label, "System")' C4-PlantUML, version 1.0.0
 ' https://github.com/RicardoNiepel/C4-PlantUML
 
 ' Colors
@@ -725,6 +528,8 @@ endlegend
 
 !define ComponentQueue(e_alias, e_label, e_techn) queue "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//" <<component>> as e_alias
 !define ComponentQueue(e_alias, e_label, e_techn, e_descr) queue "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//\n\n e_descr" <<component>> as e_alias
+
+
 ' C4-PlantUML, version 1.0.0
 ' https://github.com/RicardoNiepel/C4-PlantUML
 ' Colors
@@ -925,6 +730,7 @@ endlegend
 ' Boundaries
 ' ##################################
 !define Container_Boundary(e_alias, e_label) Boundary(e_alias, e_label, "Container")
+
 ' Legends
 ' ##################################
 
@@ -994,6 +800,9 @@ endlegend
         endlegend
     !enddefinelong
 !endif
+
+
+
 ' GCP-C4-PlantUML
 ' https://github.com/gamma-data/GCP-C4-PlantUML
 
@@ -1087,7 +896,105 @@ participant "p_label\n<size:TECHN_FONT_SIZE>[p_techn]</size>" as p_alias << ($p_
 
 !definelong GCPParticipant(p_alias, p_label, p_techn, p_descr, p_color, p_sprite, p_stereo)
 participant "p_label\n<size:TECHN_FONT_SIZE>[p_techn]</size>\n\n p_descr" as p_alias << ($p_sprite, p_color) p_stereo>>
-!enddefinelongsprite $AIHub [70x70/4z] {
+!enddefinelong
+
+' GCP-C4-PlantUML
+' https://github.com/gamma-data/GCP-C4-PlantUML
+
+' Colors
+' ##################################
+!define GCP_COLOR #0072C6
+!define GCP_BG_COLOR #FFFFFF
+!define GCP_BORDER_COLOR #3C7FC0
+!define GCP_SYMBOL_COLOR GCP_COLOR
+
+!define YELLOW #FFFF00
+!define GREEN #00FF00
+!define RED #FF0000
+!define GCP_MODIFIED_SYMBOL_COLOR YELLOW
+!define GCP_NEW_SYMBOL_COLOR GREEN
+!define GCP_DELETED_SYMBOL_COLOR RED
+
+
+' Styling
+' ##################################
+
+!define TECHN_FONT_SIZE 12
+
+skinparam defaultTextAlignment center
+
+skinparam wrapWidth 200
+skinparam maxMessageSize 150
+
+skinparam rectangle {
+    StereotypeFontSize 12
+}
+
+skinparam Arrow {
+    Color #666666
+    FontColor #666666
+    FontSize 12
+}
+
+skinparam rectangle<< resource >> {
+    BackgroundColor GCP_BG_COLOR
+    BorderColor GCP_BORDER_COLOR
+}
+
+skinparam rectangle<< modified_resource >> {
+    BackgroundColor GCP_BG_COLOR
+    BorderColor GCP_MODIFIED_SYMBOL_COLOR
+}
+
+skinparam rectangle<< new_resource >> {
+    BackgroundColor GCP_BG_COLOR
+    BorderColor GCP_NEW_SYMBOL_COLOR
+}
+
+skinparam rectangle<< deleted_resource >> {
+    BackgroundColor GCP_BG_COLOR
+    BorderColor GCP_DELETED_SYMBOL_COLOR
+}
+
+skinparam participant {
+    BackgroundColor GCP_BG_COLOR
+    BorderColor GCP_BORDER_COLOR
+}
+
+' Layout
+' ##################################
+
+!definelong LAYOUT_AS_SKETCH
+skinparam backgroundColor #EEEBDC
+skinparam handwritten true
+skinparam defaultFontName "Comic Sans MS"
+center footer <font color=red>Warning:</font> Created for discussion, needs to be validated
+!enddefinelong
+
+!define LAYOUT_TOP_DOWN top to bottom direction
+!define LAYOUT_LEFT_RIGHT left to right direction
+
+' Elements
+' ##################################
+
+!definelong GCPEntity(e_alias, e_label, e_techn, e_color, e_sprite, e_stereo)
+rectangle "==e_label\n<color:e_color><$e_sprite></color>\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//" <<e_stereo>> as e_alias
+!enddefinelong
+
+!definelong GCPEntity(e_alias, e_label, e_techn, e_descr, e_color, e_sprite, e_stereo)
+rectangle "==e_label\n<color:e_color><$e_sprite></color>\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//\n\n e_descr" <<e_stereo>> as e_alias
+!enddefinelong
+
+!definelong GCPParticipant(p_alias, p_label, p_techn, p_color, p_sprite, p_stereo)
+participant "p_label\n<size:TECHN_FONT_SIZE>[p_techn]</size>" as p_alias << ($p_sprite, p_color) p_stereo>>
+!enddefinelong
+
+!definelong GCPParticipant(p_alias, p_label, p_techn, p_descr, p_color, p_sprite, p_stereo)
+participant "p_label\n<size:TECHN_FONT_SIZE>[p_techn]</size>\n\n p_descr" as p_alias << ($p_sprite, p_color) p_stereo>>
+!enddefinelong
+
+
+sprite $AIHub [70x70/4z] {
 xPS5hWGn34FxVFyxVqPFKsUq4Q-5fHSehvwU0WL1XgWXCcG0ewQIAmFEgAq9LoGc81BJ58SCO7HJbIi3pkYsRhZ2eQaB8RPc2bXpe10xqS1qJ94Ip8w0S-1i
 QD_AbNDoXie2CIoinHgS4tk7Z1cdwCuvL33oFYOv1LauI9GKxVF-FOWYpTlvr8uYBNmnK51ahXZ5bZVruaAFKyIH0asAZXI92mLbZ5Ea_nIaXodiSy3gKuJ4
 FY_dcVv7AHSOQTKXsmt5gbkK57rmUZjWbHIatua9kt5HvuNT0LoSTZZxcz8-fQxrtqdbEy7nnAoFP6m7b5t3JUAhxih8hImPfUYMRbYd49ymr4-Nq2DXREss
@@ -3405,28 +3312,6 @@ C4A_HwBUNF-hFlbtKmiIBw91l8W0ul1ziU-c5YHUH00X38aLZIMPICNuZsOB
 !define TransferAppliance_Deleted(e_alias, e_label, e_techn, e_descr) GCPEntity(e_alias, e_label, e_techn, e_descr, GCP_SYMBOL_COLOR, TransferAppliance, deleted_resource)
 !define TransferApplianceParticipant(p_alias, p_label, p_techn) GCPParticipant(p_alias, p_label, p_techn, GCP_SYMBOL_COLOR, TransferApplianceParticipant, TransferApplianceParticipant)
 !define TransferApplianceParticipant(p_alias, p_label, p_techn, p_descr) GCPParticipant(p_alias, p_label, p_techn, p_descr, GCP_SYMBOL_COLOR, TransferApplianceParticipant, TransferApplianceParticipant)
-sprite $Slack [70x70/4z] {
-lPT94iD03081_V_FEQMKWxneeDAdh5spWMsWeUezmeHg3or7Wr_gd8YaDULXItgtL2uz55EZYAK229M0bK0lunBPI5-3X8OHYqxBGu7G0W1d2_kx5nA0rxq8
-7cq9chTpaskP5nEmBSI0LXPYXDjhp3mRrwAgW6MHFNSimenMMPeLoqJUJ87zVcqPllkNHTCfdQR4swdn-yExmN0pjtmzpCVnn2B3CYhsnxWLZaLMkgreDma7
-SOEZQ8ovg3UBMqahtAxows5EGKMwQh536eg4Y-l9MFpzNVmfpBVaxvSLiQ0UDULQIcGjB1O4omT0nW9Vah0m-Vo4Y0IGDPt6IreZOnmV
-}
-
-sprite $SlackParticipant [50x50/4z] {
-pTHLWeL050FHIhB_DO_RVLXdl7xGWzEyvfmdHbdAlAQiDgwd84fAaguQHAIj5_w-W_7O_n3M4Cz45yVr53ocjIlXGzyjU9qh15o3IMOvhGJivkNztrQjYIIT
-6EjS2vBikvrhNtfeVEtRKlTjYP4kXBxuwfspnBPcTtVVbZ_rfQWMMH4kHBnpxSQvYcyUSrKBifTmBaGHRW7qWXf03Q06e6B_Um
-}
-
-
-!define Slack(e_alias, e_label, e_techn) GCPEntity(e_alias, e_label, e_techn, GCP_SYMBOL_COLOR, Slack, resource)
-!define Slack(e_alias, e_label, e_techn, e_descr) GCPEntity(e_alias, e_label, e_techn, e_descr, GCP_SYMBOL_COLOR, Slack, resource)
-!define Slack_New(e_alias, e_label, e_techn) GCPEntity(e_alias, e_label, e_techn, GCP_SYMBOL_COLOR, Slack, new_resource)
-!define Slack_New(e_alias, e_label, e_techn, e_descr) GCPEntity(e_alias, e_label, e_techn, e_descr, GCP_SYMBOL_COLOR, Slack, new_resource)
-!define Slack_Modified(e_alias, e_label, e_techn) GCPEntity(e_alias, e_label, e_techn, GCP_SYMBOL_COLOR, Slack, modified_resource)
-!define Slack_Modified(e_alias, e_label, e_techn, e_descr) GCPEntity(e_alias, e_label, e_techn, e_descr, GCP_SYMBOL_COLOR, Slack, modified_resource)
-!define Slack_Deleted(e_alias, e_label, e_techn) GCPEntity(e_alias, e_label, e_techn, GCP_SYMBOL_COLOR, Slack, deleted_resource)
-!define Slack_Deleted(e_alias, e_label, e_techn, e_descr) GCPEntity(e_alias, e_label, e_techn, e_descr, GCP_SYMBOL_COLOR, Slack, deleted_resource)
-!define SlackParticipant(p_alias, p_label, p_techn) GCPParticipant(p_alias, p_label, p_techn, GCP_SYMBOL_COLOR, SlackParticipant, SlackParticipant)
-!define SlackParticipant(p_alias, p_label, p_techn, p_descr) GCPParticipant(p_alias, p_label, p_techn, p_descr, GCP_SYMBOL_COLOR, SlackParticipant, SlackParticipant)
 sprite $CloudArmor [70x70/4z] {
 xTR12WCX48FXPDx_eNiJ9FxMWRcrEJho6Q7TNJtc7zUtF23raX6atBzElqozPWGfZoWrWd0PLoTSPO3nY5BTD11VHg-AhxTzG_muNp6VLBSjU_0gEtXd34Qi
 N9MZ0J8ofq5b3enlYaEW6I0520nN6JSL-47qbMHuus7QLxIkQuCIXu6YjGqLnrfsMHeg9HKeUvMxObOaoLw_28UIIMKTxrMbfLZoZcWxeZ8-AWA4596o8xQl
